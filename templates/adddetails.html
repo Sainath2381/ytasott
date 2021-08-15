@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block body %}
+<style >
+  fieldset {
+  background-color: #eeeeee;
+}
+
+legend {
+  background-color: gray;
+  color: white;
+  padding: 5px 10px;
+}
+
+input {
+  margin: 5px;
+}
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="{% url 'details' %}">YTasOTT</a>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'details' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list' %}">View Data</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'exit'%}" >Logout</a>
+      </form>
+    </div>
+  </nav>
+  <div class='container'>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary" role="alert">
+            <h3 class='center'>{{ message }}</h3>
+        </div>
+        {% endfor %}
+    {% endif %}
+  </div>
+<div class='container mt-5 border border-secondary rounded'>
+  
+  <form action = "" method ="POST">
+    {% csrf_token %}
+    <h1>Add details</h1>
+    <br/>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder= "Movie Name" name = "name">
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder= "Language" name = "language">
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder= "Actor" name = "actor">
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder= "Actress" name = "actress">
+    </div>
+    <div class="input-group mb-3">
+      <input type="number" class="form-control" placeholder= "Release Year" name = "released">
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder= "YT Link" name = "link">
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder= "Duration" name = "duration">
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder= "Genre" name = "genre">
+    </div>
+    <div class="input-group mb-3">
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load embed_video_tags %}
+{% block body %}
+ 
+      <style>
+      a:hover{
+       text-decoration: none; 
+      }
+      @media only screen and (min-width: 768px) {
+      iframe{
+        height: 13em;
+      }
+      .card{
+        width: 50%;
+      }
+    }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <form class="d-flex justify-content-center align-items-center container" name="myform" method="GET" action="{% url 'search' %}" >
+        <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="btn input-group-text" id="basic-addon1">&#128269;</span>
+        </div>
+        {% csrf_token %}
+          <input class="form-control" type="text" name="search" placeholder="Search Albums or Songs" />
+        </div>
+    </form>
+    </nav>
+    
+    <div class = "container-fluid p-3 rounded">
+      <div class = "container ">
+        <div class ="row">
+          <div class="col-12">
+            <i><h5>All Movies</h5></i>
+            <hr/>
+          </div>
+        </div>
+        
+          <div class="row">
+            {% for item in videos%}
+              <div class="card m-3" style="width: 18rem;">
+                {% video item.link '286x240'%}
+                 <div class="card-body">
+                      <div class = "row">
+                        <div class="col-6">
+                        {{item.name}}
+                        </div>
+                        <div class = "col-6">
+                        {{item.duration}}
+                        </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-12">
+                        {{item.language}}
+                        </div>
+                      </div>
+                  </div>
+              </div>
+            {% endfor%}
+          </div>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination pagination-lg">
+          <li class="page-item">
+            {% if page_obj.has_previous %}
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+          </li>
+          <li class="page-item"><span class="current">
+            <a class = "page-link disabled">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+        </span></li>
+          <li class="page-item">
+            {% if page_obj.has_next %}
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+          </li>
+        </ul>
+      </nav>
+
+
+{% endblock %}

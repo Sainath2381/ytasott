@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load embed_video_tags %}
+{% block body %}
+ 
+      <style>
+      a:hover{
+       text-decoration: none; 
+      }
+      @media only screen and (min-width: 768px) {
+      iframe{
+        height: 13em;
+      }
+      .card{
+        width: 50%;
+      }
+    }
+    .box{
+    width: 100%;
+    text-align:center;
+}
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'home'%}">Home
+      </a>
+      <form class="d-flex justify-content-center align-items-center container" name="myform" method="GET" action="{% url 'search' %}" >
+          <div class="input-group">
+          <div class="input-group-prepend">
+              <span class="btn input-group-text" id="basic-addon1">&#128269;</span>
+          </div>
+          {% csrf_token %}
+            <input class="form-control" type="text" name="search" placeholder="Search Albums or Songs" />
+          </div>
+      </form>
+      </nav>
+    <div class = "container-fluid p-3 rounded">
+      <div class = "container ">
+        <div class ="row">
+          <div class="col-12">
+            <i><h5>Searched for</h5></i>
+            <hr/>
+          </div>
+        </div>
+        
+          <div class="row">
+            {% for item in songs %}
+              <div class="card m-3" style="width: 18rem;">
+                {% video item.link '286x240'%}
+                 <div class="card-body">
+                      <div class = "row">
+                        <div class="col-6">
+                        {{item.name}}
+                        </div>
+                        <div class = "col-6">
+                        {{item.duration}}
+                        </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-12">
+                        {{item.language}}
+                        </div>
+                      </div>
+                  </div>
+              </div>
+            {% endfor%}
+          </div>
+      </div>
+      <hr/>
+    </div>
+
+{% endblock %}
