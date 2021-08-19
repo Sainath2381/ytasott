@@ -1,70 +1,110 @@
 {% extends "base.html" %}
 {% load embed_video_tags %}
 {% block body %}
- 
-      <style>
-      a:hover{
-       text-decoration: none; 
-      }
-      @media only screen and (min-width: 768px) {
-      iframe{
-        height: 13em;
-      }
-      .card{
-        width: 50%;
-      }
-    }
-    .box{
-    width: 100%;
-    text-align:center;
-}
-    </style>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'home'%}">Home
-      </a>
-      <form class="d-flex justify-content-center align-items-center container" name="myform" method="GET" action="{% url 'search' %}" >
-          <div class="input-group">
-          <div class="input-group-prepend">
-              <span class="btn input-group-text" id="basic-addon1">&#128269;</span>
-          </div>
-          {% csrf_token %}
-            <input class="form-control" type="text" name="search" placeholder="Search Albums or Songs" />
-          </div>
-      </form>
-      </nav>
-    <div class = "container-fluid p-3 rounded">
-      <div class = "container ">
-        <div class ="row">
-          <div class="col-12">
-            <i><h5>Searched for</h5></i>
-            <hr/>
+      <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 col-md-7 py-4">
+                <h4 class="text-white">About</h4>
+                <p class="text-muted">We Undertake project's to build Websites using Wordpress , Angular , And Django</p>
+              </div>
+              <div class="col-sm-4 offset-md-1 py-4">
+                <h4 class="text-white">Contact</h4>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                  <li><a href="#" class="text-white">Like on Facebook</a></li>
+                  <li><a href="#" class="text-white">Email me : sainath.tella@gmail.com</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        
-          <div class="row">
-            {% for item in songs %}
-              <div class="card m-3" style="width: 18rem;">
-                {% video item.link '286x240'%}
-                 <div class="card-body">
-                      <div class = "row">
-                        <div class="col-6">
-                        {{item.name}}
-                        </div>
-                        <div class = "col-6">
-                        {{item.duration}}
-                        </div>
-                      </div>
-                      <div class="row">
-                      <div class="col-12">
-                        {{item.language}}
-                        </div>
-                      </div>
-                  </div>
-              </div>
-            {% endfor%}
+        <div class="navbar navbar-dark bg-dark box-shadow">
+          <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              <strong>Ytasott</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
           </div>
-      </div>
-      <hr/>
-    </div>
+        </div>
+      </header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <form class="d-flex justify-content-center align-items-center container" name="myform" method="GET" action="{% url 'search' %}">
+            <div class="input-group">
+              {% csrf_token %}
+              <input type="text" class="form-control" placeholder="Search Using Actor \ Actress \ Movie \ Year" name="search">
+              <div class="input-group-append">
+                <button class="btn btn-secondary" type="button">
+                  <i class="fa fa-search">Search</i>
+                </button>
+              </div>
+            </div>
+        </form>
+        </nav>
+      <main role="main">
+        <section class="jumbotron text-center">
+          <div class="container">
+            <h1 class="jumbotron-heading">Youtube As OTT</h1>
+            <p class="lead text-muted">We Provide full length movies of Telugu and Hindi from Youtube </p>
+            <p>
+              <a href="/" class="btn btn-primary my-2">Movies</a>
+              <a href="#" class="btn btn-secondary my-2">Webseries</a>
+            </p>
+          </div>
+        </section>
+      
+        <div class="album mx-5 bg-light">
+          <div class="container">
+            <div class="row">
+              {% for item in songs %}
+                <div class="card m-3" style="width: 18rem;">
+                  {% video item.link %}
+                   <div class="card-body">
+                        <div class = "row">
+                          <div class="col-6">
+                          {{item.name}}
+                          </div>
+                          <div class = "col-6">
+                          {{item.duration}}
+                          </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-12">
+                          {{item.language}}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+              {% endfor%}
+            </div>
+              
+            </div>
+          </div>
+        </div>
+      </main>
+      <section class="float-right mr-5">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination pagination-lg">
+            <li class="page-item">
+              {% if page_obj.has_previous %}
+                  <a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+            </li>
+            <li class="page-item"><span class="current">
+              <a class = "page-link disabled">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+          </span></li>
+            <li class="page-item">
+              {% if page_obj.has_next %}
+                  <a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a>
+              {% endif %}
+            </li>
+          </ul>
+        </nav>
+      </section>
 
 {% endblock %}
+
