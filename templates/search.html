@@ -57,28 +57,20 @@
           </div>
         </section>
       
-        <div class="album mx-5 bg-light">
+        <div class="album p-2 bg-light">
           <div class="container">
             <div class="row">
-              {% for item in songs %}
-                <div class="card m-3" style="width: 18rem;">
-                  {% video item.link %}
+              {% for item in songs%}
+                  <div class="col-md-4">
+                    {% video item.link %}
                    <div class="card-body">
                         <div class = "row">
-                          <div class="col-6">
-                          {{item.name}}
-                          </div>
-                          <div class = "col-6">
-                          {{item.duration}}
-                          </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-12">
-                          {{item.language}}
-                          </div>
+                          <div class="col-6">{{item.name}}</div>
+                          <div class="col-6">{{item.language}}</div>
                         </div>
                     </div>
-                </div>
+                  </div>
+                
               {% endfor%}
             </div>
               
@@ -105,6 +97,15 @@
           </ul>
         </nav>
       </section>
+      <footer class="text-muted mt-5">
+        <div class="container">
+          <p class="float-right">
+            <a href="#top">Back to top</a>
+          </p>
+          <p>Developed By Sainath Tellapuram</p>
+          <!-- <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p> -->
+        </div>
+      </footer>
 
 {% endblock %}
 
