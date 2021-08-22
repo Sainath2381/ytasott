@@ -6,10 +6,9 @@ urlpatterns = [
     path('details/',views.adddetails, name = 'details'),
     path('',views.home, name = 'home'),
     path('list/',views.list_data, name = 'list'),
-
     path('exit/',views.exit, name = 'exit'),
     path('search/',views.search, name = 'search'),
-
-
+    path('edit/<int:id>',views.edit, name = 'edit'),
+    path('delete/<int:id>',views.destroy, name = 'delete'),
 ]
 

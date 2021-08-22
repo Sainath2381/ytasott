@@ -43,7 +43,7 @@ input {
         {% endfor %}
     {% endif %}
   </div>
-<div class='container mt-5 border border-secondary rounded'>
+<div class='container mt-5 border border-secondary rounded table-responsive'>
     <table class="table">
         <thead>
           <tr>
@@ -63,8 +63,9 @@ input {
             <td>{{item.actress}}</td>
             <td>{{item.released}}</td>
             <td>{{item.genre}}</td>
-            <td><button class="btn btn-primary">Edit</button></td>
-            <td><button class="btn btn-danger">Delete</button></td>
+            <td><a href="{% url 'edit' item.id %}" class="btn btn-danger disabled">Edit</a></td>
+
+            <td><a href="{% url 'delete' item.id %}" class="btn btn-danger">Delete</a></td>
 
 
           </tr>

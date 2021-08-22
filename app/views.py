@@ -63,8 +63,8 @@ def edit(request, id):
     movielist = data.objects.get(id=id)  
     return render(request,'edit.html', {'employee':movielist})  
 
-def update(request, id):  
-    employee = Employee.objects.get(id=id)  
+def edit(request, id):  
+    employee = data.objects.get(id=id)  
     form = EmployeeForm(request.POST, instance = employee)
     
     if form.is_valid():  
@@ -75,7 +75,7 @@ def update(request, id):
 def destroy(request, id):  
     movielist = data.objects.get(id=id)  
     movielist.delete()  
-    return redirect("/details")  
+    return redirect("/list")  
 
 @login_required
 def exit(request):
