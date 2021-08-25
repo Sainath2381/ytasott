@@ -45,7 +45,7 @@ def adddetails(request):
         link = request.POST.get('link')
         duration = request.POST.get('duration')
         genre = request.POST.get('genre')
-        result = data(name = name,language = language,actor = actor,actress = actress,released = released,link = link,duration = duration,genre = genre)
+        result = data(name = name,language = language,actor = actor,actress = actress,thumbnail = thumbnail,released = released,link = link,duration = duration,genre = genre)
         if result:
             result.save()
             messages.info(request, 'Added Successfully')
