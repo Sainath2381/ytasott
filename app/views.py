@@ -8,11 +8,7 @@ from django.core.paginator import Paginator
 
 def home(request):
     view_data = data.objects.all()
-    paginator = Paginator(view_data, 25) # Show 25 contacts per page.
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request,'home.html',context = {'videos':view_data, 'page_obj': page_obj})
+    return render(request,'home.html',context = {'videos':view_data})
 
 def search(request):        
     if request.method == 'GET': # this will be GET now

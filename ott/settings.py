@@ -132,3 +132,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL ='/accounts/adddetails/'
 LOGIN_URL ='/userlogin/'
 
+# SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
