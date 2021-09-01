@@ -14,3 +14,8 @@ class data(models.Model):
     class Meta:
         def __str__(self):
             return str(self.name)
+
+class Count(models.Model):
+    counter = models.CharField(max_length = 25,default = None)
+    def __str__(self):
+        return self.counter

@@ -3,12 +3,29 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from app.models import data
+from app.models import data, Count
 from django.core.paginator import Paginator
+
+def get_ip(request):
+    address = request.META.get('HTTP_X_FORWARDED_FOR')
+    if address:
+        ip = address.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 def home(request):
     view_data = data.objects.all()
-    return render(request,'home.html',context = {'videos':view_data})
+    ip = get_ip(request)
+    u = Count(counter = ip)
+    result = Count.objects.filter(counter__icontains = ip )
+    if len(result) == 1:
+        pass
+    else :
+        u.save()
+    count = Count.objects.all().count()
+    return render(request,'home.html',context = {'videos':view_data, 'count':count})
+
 
 def search(request):        
     if request.method == 'GET': # this will be GET now
