@@ -44,15 +44,47 @@
             </div>
         </form>
         </nav>
+        <marquee class="lead text-muted">
+          Few Videos doesnt play in website click on "Watch On Youtube" you will be redirected
+       </marquee>
       <main role="main">
         <section class="jumbotron text-center">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="container">
+                  <h1 class="jumbotron-heading">Youtube As OTT</h1>
+                  <p class="lead text-muted">We Provide full length movies of Telugu and Hindi from Youtube </p>
+                  <p>
+                    <a href="/" class="btn btn-primary my-2">Movies</a>
+                    <a href="#" class="btn btn-secondary my-2">Webseries</a>
+                  </p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <h1 class="jumbotron-heading">Get Amazon Deals on your Mobile</h1>
+                <p class="lead text-muted">We share amazon deals in India Only</p>
+
+                  
+                  <p><a href ="https://chat.whatsapp.com/IYxST5EtfaV0Xlv2y8S0yx " class="btn btn-primary my-2">Click her join group on whatsapp</a></p>
+                </p>
+                 
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+
+        </section>
+        <section>
           <div class="container">
-            <h1 class="jumbotron-heading">Youtube As OTT</h1>
-            <p class="lead text-muted">We Provide full length movies of Telugu and Hindi from Youtube </p>
-            <p>
-              <a href="/" class="btn btn-primary my-2">Movies</a>
-              <a href="#" class="btn btn-secondary my-2">Webseries</a>
-            </p>
+
           </div>
         </section>
         <div class="album p-2 bg-light">
@@ -65,9 +97,8 @@
                 <img src="{{item.thumbnail}}" class="figure-img img-fluid img-thumbnail rounded" alt="{{item.name}}, {{item.language}}, {{item.actor}}, {{item.actress}}, {{item.genre}}">
               </a>
                 <div class="row m-3 p-3 ">
-                  <div class="col-12 text-nowrap">{{item.name}}</div><br/>
+                  <div class="col-4 text-nowrap">{{item.name}}</div>
                 </div>
-                
               </figure>
               </div>
               {% endfor%}
@@ -81,7 +112,6 @@
           <p class="float-right">
             <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>
           </p>
-          <p>Developed By Sainath Tellapuram</p>
           <p>Number of Visitors {{count}} </p>
         </div>
       </footer>
