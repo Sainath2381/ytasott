@@ -4,7 +4,8 @@ from django.contrib.auth import authenticate , login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from app.models import data, Count
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
+
 
 def get_ip(request):
     address = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -15,7 +16,16 @@ def get_ip(request):
     return ip
 
 def home(request):
-    view_data = data.objects.all()
+    users = data.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(users, 12)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
     ip = get_ip(request)
     u = Count(counter = ip)
     result = Count.objects.filter(counter__icontains = ip )
@@ -24,7 +34,7 @@ def home(request):
     else :
         u.save()
     count = Count.objects.all().count()
-    return render(request,'home.html',context = {'videos':view_data, 'count':count})
+    return render(request,'home.html',context = {'users':users, 'count':count })
 
 
 def search(request):        

@@ -90,7 +90,7 @@
         <div class="album p-2 bg-light">
           <div class="container">
             <div class="row">
-              {% for item in videos%}
+              {% for item in users%}
               <div class="col-md-4 col-sm-12 col-xs-12">
               <figure class="figure popup">
                 <a href="{{item.link}}" class="video" >
@@ -106,13 +106,40 @@
             </div>
           </div>
         </div>
+        <div class="row d-flex justify-content-center">
+        <nav aria-label="Page navigation example ">
+        {% if users.has_other_pages %}
+
+            <ul class="pagination">
+              {% if users.has_previous %}
+              <li class="page-item disabled">
+                <a class="page-link" href="?page={{ users.previous_page_number }}" >Previous</a>
+              </li>
+              
+              {% endif %}
+              {% for i in users.paginator.page_range %}
+                {% if users.number == i %}
+                <li class="page-item active">
+                  <a class="page-link" href="#">{{i}} <span class="sr-only">(current)</span></a>
+                </li>
+                {% else %}
+                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if users.has_next %}
+                <li class="page-item"><a  class="page-link" href="?page={{ users.next_page_number }}">Next</a></li>
+                {% endif %}
+            </ul>
+          {% endif %}
+        </nav>
+      </div>
       </main>
       <footer class="text-muted mt-5">
         <div class="container">
           <p class="float-right">
             <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>
           </p>
-          <p>Number of Visitors {{count}} </p>
+          <p>Number of Visitors {{count}}  </p>
         </div>
       </footer>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
