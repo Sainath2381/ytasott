@@ -36,6 +36,17 @@ def home(request):
     count = Count.objects.all().count()
     return render(request,'home.html',context = {'users':users, 'count':count })
 
+def aboutus(request):        
+    return render(request, "aboutus.html")
+
+def privacypolicy(request):        
+    return render(request, "privacypolicy.html")
+
+def contactus(request):        
+    return render(request, "contactus.html")
+
+def disclaimer(request):        
+    return render(request, "disclaimer.html")
 
 def search(request):        
     if request.method == 'GET': # this will be GET now

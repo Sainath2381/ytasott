@@ -162,10 +162,10 @@ a {
                 <span class="footer-title">Company</span>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About us</a>
+                <a class="nav-link" href="{% url 'aboutus'%}">About us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Disclaimer</a>
+                <a class="nav-link" href="{% url 'disclaimer'%}">Disclaimer</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">News and articles</a>
@@ -179,7 +179,7 @@ a {
               </li>
              
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-envelope"></i>Contact us</a>
+                <a class="nav-link" href="{% url 'contactus'%}"><i class="fa fa-envelope"></i>Contact us</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fa fa-star"></i>Give feedback</a>
@@ -198,7 +198,7 @@ a {
           <div class="col-md-4 box">
             <ul class="list-inline quick-links">
               <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
+                <a href="{% url 'privacypolicy'%}">Privacy Policy</a>
               </li>
               <li class="list-inline-item">
                 <a href="#">Terms of Use</a>
